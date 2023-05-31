@@ -10,7 +10,7 @@ namespace AlumnosTrabajoIrina
 {
     public class Database
     {
-        private SqlConnection connection = new SqlConnection("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=PruebaUsuarios;Data Source=DESKTOP-7VB377L\\SQLEXPRESS");
+        private SqlConnection connection = new SqlConnection("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Alumnos;Data Source=DESKTOP-7VB377L\\SQLEXPRESS");
 
         //alumnos
         
@@ -184,17 +184,15 @@ namespace AlumnosTrabajoIrina
                 connection.Open();
                 string query = @"
 
-                    INSERT INTO Materias (id, nombre, carrera)
-                    VALUES (@id, @nombre, @carrera)
+                    INSERT INTO Materias (nombre, carrera)
+                    VALUES (@nombre, @carrera)
 
                 ";
 
-                SqlParameter id = new SqlParameter("@id", materia.id);
                 SqlParameter nombre = new SqlParameter("@nombre", materia.nombre);
                 SqlParameter carrera = new SqlParameter("@carrera", materia.carrera);
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add(id);
                 command.Parameters.Add(nombre);
                 command.Parameters.Add(carrera);
 
@@ -269,12 +267,10 @@ namespace AlumnosTrabajoIrina
         {
             try
             {
-
                 connection.Open();
-                string query = @" UPDATE Alumnos
+                string query = @" UPDATE Materias
                                   SET nombre = @nombre, 
-                                      carrera = @carrera,
-                                      id = @id,
+                                      carrera = @carrera
                                   WHERE id = @id ";
 
                 SqlParameter id = new SqlParameter("@id", materia.id);
@@ -433,7 +429,7 @@ namespace AlumnosTrabajoIrina
                                       materia = @materia,
                                       telefono = @telefono,
                                       direccion = @direccion,
-                                      dni = @dni,
+                                      dni = @dni
                                   WHERE dni = @dni ";
 
                 SqlParameter dni = new SqlParameter("@dni", profesor.dni);

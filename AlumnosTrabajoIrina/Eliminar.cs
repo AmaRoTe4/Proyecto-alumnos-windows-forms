@@ -43,6 +43,12 @@ namespace AlumnosTrabajoIrina
 
         private void btn_eliminar_Click(object sender, EventArgs e)
         {
+            if (txtBoxData.Text == "")
+            {
+                MessageBox.Show("Debe compleater el campo para eliminar");
+                return;
+            }
+
             bool resultado = false;
             string data = txtBoxData.Text;
 

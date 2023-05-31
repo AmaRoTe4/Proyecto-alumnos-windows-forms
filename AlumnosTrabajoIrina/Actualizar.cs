@@ -15,6 +15,7 @@ namespace AlumnosTrabajoIrina
     {
         Funciones fun = new Funciones();
         int globalAction = 0;
+        int id = 0;
 
         public Actualizar(int action)
         {
@@ -49,6 +50,18 @@ namespace AlumnosTrabajoIrina
 
         private void actualizarAlumno()
         {
+            if (
+                txtBox1.Text == "" ||
+                txtBox2.Text == "" ||
+                txtBox3.Text == "" ||
+                txtBox4.Text == "" ||
+                txtBox5.Text == ""
+            )
+            {
+                MessageBox.Show("debe completar todos los campos");
+                return;
+            }
+
             Alumno alumno = new Alumno();
 
             int dni = Convert.ToInt32(txtBox1.Text);
@@ -66,12 +79,24 @@ namespace AlumnosTrabajoIrina
             alumno.direccion = txtBox3.Text;
             alumno.semestre = semestre;
 
-            fun.AgregarAlumno(alumno);
+            fun.EditarAlumno(alumno);
             MessageBox.Show("Actualizado con exito");
         }
 
         private void actualizarProfesor()
         {
+            if (
+                txtBox1.Text == "" ||
+                txtBox2.Text == "" ||
+                txtBox3.Text == "" ||
+                txtBox4.Text == "" ||
+                txtBox5.Text == ""
+            )
+            {
+                MessageBox.Show("debe completar todos los campos");
+                return;
+            }
+
             Profesor profesor = new Profesor();
 
             int dni = Convert.ToInt32(txtBox1.Text);
@@ -89,31 +114,44 @@ namespace AlumnosTrabajoIrina
             profesor.direccion = txtBox3.Text;
             profesor.materia = materia;
 
-            fun.AgregarProfesor(profesor);
+            fun.EditarProfesor(profesor);
             MessageBox.Show("Actualizado con exito");
         }
 
         private void actualizarMateria()
         {
+            if (
+                txtBox2.Text == "" ||
+                txtBox3.Text == ""
+            )
+            {
+                MessageBox.Show("debe completar todos los campos");
+                return;
+            }
+
             Materia materia = new Materia();
 
+            materia.id = id;
             materia.nombre = txtBox2.Text;
             materia.carrera = txtBox3.Text;
 
-            fun.AgregarMateria(materia);
+            fun.EditarMateria(materia);
             MessageBox.Show("Actualizado con exito");
         }
 
         private void Actualizar_Load(object sender, EventArgs e)
         {
-            if (globalAction == 1) actualizarAlumno();
-            else if (globalAction == 2) actualizarProfesor();
-            else actualizarMateria();
-            this.Close();
+            
         }
 
         private void btn_buscar_Click(object sender, EventArgs e)
         {
+            if(txtBoxData.Text == "")
+            {
+                MessageBox.Show("Debe compleater el campo para buscar");
+                return;
+            }
+
             bool resultado = false;
             string data = txtBoxData.Text;
 
@@ -182,6 +220,7 @@ namespace AlumnosTrabajoIrina
 
                 Materia materia = fun.obtenerMateria(id);
 
+                id = materia.id;
                 txtBox2.Text = materia.nombre.ToString();
                 txtBox3.Text = materia.carrera.ToString();
             }
@@ -189,7 +228,10 @@ namespace AlumnosTrabajoIrina
 
         private void btn_actualizar_Click(object sender, EventArgs e)
         {
-
+            if (globalAction == 1) actualizarAlumno();
+            else if (globalAction == 2) actualizarProfesor();
+            else actualizarMateria();
+            this.Close();
         }
 
         private void btn_salir_Click(object sender, EventArgs e)

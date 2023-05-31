@@ -1,0 +1,20 @@
+sql
+
+Alumnos
+	Alumnos
+		dni 		int
+		nombre 		varchar
+		direccion 	varchar
+		carrera		varchar
+		semestre	int
+	Materias
+		id		int
+		nombre		varchar
+		carrera		varchar
+	Profesores
+		dni		int	
+		materia		int
+		nombre		varchar
+		direccion	varchar
+		telefono	varchar
+	

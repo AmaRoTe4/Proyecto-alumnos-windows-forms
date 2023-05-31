@@ -47,6 +47,18 @@ namespace AlumnosTrabajoIrina
 
         private void crearAlumno()
         {
+            if (
+                txtBox1.Text == "" ||
+                txtBox2.Text == "" ||
+                txtBox3.Text == "" ||
+                txtBox4.Text == "" ||
+                txtBox5.Text == ""
+            )
+            {
+                MessageBox.Show("debe completar todos los campos");
+                return;
+            }
+
             Alumno alumno = new Alumno();
 
             int dni = Convert.ToInt32(txtBox1.Text);
@@ -70,6 +82,18 @@ namespace AlumnosTrabajoIrina
 
         private void crearProfesor()
         {
+            if (
+                txtBox1.Text == "" ||
+                txtBox2.Text == "" ||
+                txtBox3.Text == "" ||
+                txtBox4.Text == "" ||
+                txtBox5.Text == ""
+            )
+            {
+                MessageBox.Show("debe completar todos los campos");
+                return;
+            }
+
             Profesor profesor = new Profesor();
 
             int dni = Convert.ToInt32(txtBox1.Text);
@@ -93,6 +117,15 @@ namespace AlumnosTrabajoIrina
 
         private void crearMateria()
         {
+            if (
+                txtBox2.Text == "" ||
+                txtBox3.Text == ""
+            )
+            {
+                MessageBox.Show("debe completar todos los campos");
+                return;
+            }
+
             Materia materia = new Materia();
 
             materia.nombre = txtBox2.Text;
